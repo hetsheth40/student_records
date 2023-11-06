@@ -17,12 +17,11 @@
     <link rel="stylesheet" href="assets/css/styles.css?h=d41d8cd98f00b204e9800998ecf8427e">
 </head>
 
-<body>
+<body onload="diplay_student_data();">
     <!-- Start: Navigation Clean -->
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container"><a class="navbar-brand" href="index.php">Agaetis Technologies<br></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+            <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link" href="index.php">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="records.php">Records</a></li>
@@ -35,47 +34,26 @@
     <!-- Start: Contact Form Clean -->
     <div class="contact-clean">
         <div class="container p-2" style="background-color:white;">
-            <!-- Start: Data Table --><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-            
-        </tbody>
-    </table>
+        <div class="table-responsive">
+            <!-- Start: Data Table -->
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Batch/Class</th>
+                        <th>Email address</th>
+                    </tr>
+                </thead>
+                <tbody id="diplay_student_data">
+
+                </tbody>
+            </table>
             <!-- End: Data Table -->
         </div>
-        <div class="modal fade" role="dialog" tabindex="-1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                    <div class="modal-body">
-                        <form method="post">
-                            <h2 class="text-center">Contact us</h2>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <h2 class="text-center">Pass</h2>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </div>
     <!-- End: Contact Form Clean -->
     <!-- Start: Footer Basic -->
@@ -106,6 +84,16 @@
     <script src="assets/bootstrap/js/bootstrap.min.js?h=63715b63ee49d5fe4844c2ecae071373"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        function diplay_student_data() {
+            $.post('student_report_actions.php', {
+                    action: 'view'
+                },
+                function(data) {
+                    $('#diplay_student_data').html(data);
+                });
+        }
+    </script>
 </body>
 
 </html>

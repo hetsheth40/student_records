@@ -34,7 +34,7 @@
     <!-- Start: Contact Form Clean -->
     <div class="contact-clean">
         <div class="container">
-            <form method="post" action="records.php" class="needs-validation" novalidate>
+            <form method="post" action="student_report_actions.php" class="needs-validation" novalidate>
                 <h2 class="text-center">Student Report Details</h2>
 
                 <div class="row">
@@ -90,10 +90,10 @@
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <input type="text" class="form-control" id="english" placeholder="Enter English" name="english">
-                                    
+
                                 </div>
                                 <div class="col-6 pl-1">
-                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                    <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
                                 </div>
                             </div>
 
@@ -106,10 +106,10 @@
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <input type="text" class="form-control" id="hindi" placeholder="Enter Hindi" name="hindi">
-                                    
+
                                 </div>
                                 <div class="col-6 pl-1">
-                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                    <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
                                 </div>
                             </div>
 
@@ -122,10 +122,10 @@
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <input type="text" class="form-control" id="math" placeholder="Enter Math" name="math">
-                                    
+
                                 </div>
                                 <div class="col-6 pl-1">
-                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                    <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
                                 </div>
                             </div>
 
@@ -139,10 +139,10 @@
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <input type="text" class="form-control" id="science" placeholder="Enter Science" name="science">
-                                    
+
                                 </div>
                                 <div class="col-6 pl-1">
-                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                    <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
                                 </div>
                             </div>
 
@@ -155,10 +155,10 @@
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <input type="text" class="form-control" id="history" placeholder="Enter History" name="history">
-                                    
+
                                 </div>
                                 <div class="col-6 pl-1">
-                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                    <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
                                 </div>
                             </div>
 
@@ -171,10 +171,10 @@
                             <div class="row">
                                 <div class="col-6 pr-0">
                                     <input type="text" class="form-control" id="geography" placeholder="Enter Geography" name="geography">
-                                    
+
                                 </div>
                                 <div class="col-6 pl-1">
-                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                    <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
                                 </div>
                             </div>
 
@@ -184,26 +184,44 @@
 
                 <br>
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col">
                         <div class="form-group">
                             <label for="remarks"><span class="text-danger">* </span> Remarks:</label>
                             <textarea class="form-control" name="remarks" id="remarks" placeholder="Remarks" rows="14"></textarea>
 
                         </div>
                     </div>
-                    <div class="col-4">
-                        <br>
-                        <br>
-                        <br>
-                    <div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
-                </div>
                 </div>
 
-
-
-                
-            </form>
+                <div class="row">
+                    <div class="form-group"><button class="btn btn-primary" type="submit" name="insert">send </button></div>
+                </div>
         </div>
+
+
+
+
+        </form>
+      
+    <div role="dialog" tabindex="-1" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <h2 class="text-center">Contact us</h2>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <h2 class="text-center">Pass</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
     </div>
     <!-- End: Contact Form Clean -->
     <!-- Start: Footer Basic -->
