@@ -20,9 +20,8 @@
 <body>
     <!-- Start: Navigation Clean -->
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><a class="navbar-brand" href="#">Agaetis Technologies<br></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+        <div class="container"><a class="navbar-brand" href="index.php">Agaetis Technologies<br></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.php">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="records.php">Records</a></li>
@@ -34,20 +33,177 @@
     <!-- End: Navigation Clean -->
     <!-- Start: Contact Form Clean -->
     <div class="contact-clean">
-        <form method="post">
-            <h2 class="text-center">Contact us</h2>
-            <!-- Start: Success Example -->
-            <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name"></div>
-            <!-- End: Success Example -->
-            <!-- Start: Error Example -->
-            <div class="form-group"><input class="form-control is-invalid" type="email" name="email" placeholder="Email">
-                <!-- Start: The Error Message --><small class="form-text text-danger">Please enter a correct email address.</small>
-                <!-- End: The Error Message -->
-            </div>
-            <!-- End: Error Example -->
-            <div class="form-group"><textarea class="form-control" name="message" placeholder="Message" rows="14"></textarea></div>
-            <div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
-        </form>
+        <div class="container">
+            <form method="post" action="records.php" class="needs-validation" novalidate>
+                <h2 class="text-center">Student Report Details</h2>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="student_id"><span class="text-danger">* </span> Student ID:</label>
+                            <input type="text" class="form-control" id="student_id" placeholder="Enter Student ID" name="student_id">
+                            <!-- Start: The Error Message --><small class="form-text text-danger">Please enter a correct student id.</small>
+                            <!-- End: The Error Message -->
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="first_name"><span class="text-danger">* </span> First name:</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Enter First name" name="first_name">
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="last_name"><span class="text-danger">* </span> Last name:</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Last name" name="last_name">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="batch_class">Batch/Class:</label>
+                            <input type="text" class="form-control" id="batch_class" placeholder="Enter Batch/Class" name="batch_class">
+
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="email_address">Email address:</label>
+                            <input type="email" class="form-control" id="email_address" placeholder="Enter Email address" name="email_address">
+
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <h5 class="text-center">Data entry for Following Subjects:</h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="english"><span class="text-danger">* </span> English:</label>
+                            <div class="row">
+                                <div class="col-6 pr-0">
+                                    <input type="text" class="form-control" id="english" placeholder="Enter English" name="english">
+                                    
+                                </div>
+                                <div class="col-6 pl-1">
+                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="hindi"><span class="text-danger">* </span> Hindi:</label>
+                            <div class="row">
+                                <div class="col-6 pr-0">
+                                    <input type="text" class="form-control" id="hindi" placeholder="Enter Hindi" name="hindi">
+                                    
+                                </div>
+                                <div class="col-6 pl-1">
+                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="math"><span class="text-danger">* </span> Math:</label>
+                            <div class="row">
+                                <div class="col-6 pr-0">
+                                    <input type="text" class="form-control" id="math" placeholder="Enter Math" name="math">
+                                    
+                                </div>
+                                <div class="col-6 pl-1">
+                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="science"><span class="text-danger">* </span> Science:</label>
+                            <div class="row">
+                                <div class="col-6 pr-0">
+                                    <input type="text" class="form-control" id="science" placeholder="Enter Science" name="science">
+                                    
+                                </div>
+                                <div class="col-6 pl-1">
+                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="history"><span class="text-danger">* </span> History:</label>
+                            <div class="row">
+                                <div class="col-6 pr-0">
+                                    <input type="text" class="form-control" id="history" placeholder="Enter History" name="history">
+                                    
+                                </div>
+                                <div class="col-6 pl-1">
+                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="geography"><span class="text-danger">* </span> Geography:</label>
+                            <div class="row">
+                                <div class="col-6 pr-0">
+                                    <input type="text" class="form-control" id="geography" placeholder="Enter Geography" name="geography">
+                                    
+                                </div>
+                                <div class="col-6 pl-1">
+                                <input type="text" class="form-control-plaintext" id="total" name="total" value="/100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label for="remarks"><span class="text-danger">* </span> Remarks:</label>
+                            <textarea class="form-control" name="remarks" id="remarks" placeholder="Remarks" rows="14"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <br>
+                        <br>
+                        <br>
+                    <div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
+                </div>
+                </div>
+
+
+
+                
+            </form>
+        </div>
     </div>
     <!-- End: Contact Form Clean -->
     <!-- Start: Footer Basic -->
@@ -58,7 +214,7 @@
             <!-- End: Social Icons -->
             <!-- Start: Links -->
             <ul class="list-inline">
-                <li class="list-inline-item"><a href="index.php">Home</a></li>
+                <li class="list-inline-item active"><a href="index.php">Home</a></li>
                 <li class="list-inline-item"><a href="records.php">Records</a></li>
                 <li class="list-inline-item"><a href="#">About Us</a></li>
                 <li class="list-inline-item"><a href="#">Terms</a></li>
