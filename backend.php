@@ -48,7 +48,7 @@ class CURD_Operation extends DbConnection
         history                 float,
         geography               float,
         remarks                 text,
-        percentage              int,
+        percentage              float,
         grade                   text,
         primary key(id)
       )";
@@ -60,9 +60,9 @@ class CURD_Operation extends DbConnection
         }
     }
 
-    function fetch_student_results($requested_user_id = 0)
+    function fetch_student_results($requested_student_id = 0)
     {
-        $fetch_student_result_details_query = $requested_user_id > 0 ? "SELECT * FROM student_result Where id='$requested_user_id'" : "SELECT * FROM student_result ORDER BY id DESC";
+        $fetch_student_result_details_query = $requested_student_id > 0 ? "SELECT * FROM student_result Where student_id='$requested_student_id'" : "SELECT * FROM student_result ORDER BY id DESC";
 
 
 
@@ -79,22 +79,9 @@ class CURD_Operation extends DbConnection
         }
     }
 
-    public function insert_student_result_details(
-        $student_id,
-        $first_name,
-        $last_name,
-        $batch_class,
-        $email_address,
-        $english,
-        $hindi,
-        $math,
-        $science,
-        $history,
-        $geography,
-        $percentage,
-        $grade
-    ) {
-        $insert_student_result_details = "INSERT INTO `student_result` (`id`,  `student_id`,`first_name`,`last_name`,`batch_class`,`email_address`,`english`,`hindi`,`math`,`science`,`history`,`geography`,`percentage`,`grade`) VALUES ('NUll','$student_id','$first_name','$last_name','$batch_class','$email_address','$english','$hindi','$math','$science','$history','$geography','$percentage','$grade')";
+    public function insert_student_result_details($student_id, $first_name, $last_name, $batch_class, $email_address, $english, $hindi, $math, $science, $history, $geography, $remarks, $percentage, $grade)
+    {
+        $insert_student_result_details = "INSERT INTO `student_result` (`id`,  `student_id`,`first_name`,`last_name`,`batch_class`,`email_address`,`english`,`hindi`,`math`,`science`,`history`,`geography`, `remarks`, `percentage`,`grade`) VALUES ('NUll','$student_id','$first_name','$last_name','$batch_class','$email_address','$english','$hindi','$math','$science','$history','$geography','$remarks','$percentage','$grade')";
 
         if (!$this->connection->query($insert_student_result_details)) {
             // return '<div class="alert alert-danger alert-dismissible fade show" role="alert"><span>Data Insertion Fail</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>';
@@ -105,9 +92,10 @@ class CURD_Operation extends DbConnection
         }
     }
 
-    public function update_student_result_details($student_id, $first_name, $last_name, $batch_class, $email_address, $english, $hindi, $math, $science, $history, $geography, $percentage, $grade)
+    public function update_student_result_details($student_id, $first_name, $last_name, $batch_class, $email_address, $english, $hindi, $math, $science, $history, $geography, $remarks, $percentage, $grade)
     {
-        $update_student_result_details_query =  "UPDATE  `student_result` SET`student_id`=$student_id,`first_name`=$first_name,`last_name`=$last_name,`batch_class`=$batch_class,`email_address`=$email_address,`english`=$english,`hindi`=$hindi,`math`=$math,`science`=$science,`history`=$history,`geography`=$geography,`percentage`=$percentage,`grade`=$grade WHERE `student_id` = $student_id";
+        $update_student_result_details_query =  "UPDATE  `student_result` SET `student_id`='$student_id',`first_name`='$first_name',`last_name`='$last_name',`batch_class`='$batch_class',`email_address`='$email_address',`english`='$english',`hindi`='$hindi',`math`='$math',`science`='$science',`history`='$history',`geography`='$geography',`remarks`='$remarks',`percentage`='$percentage',`grade`='$grade' WHERE `student_id` = '$student_id'";
+
         $update_student_result_details = $update_student_result_details_query;
 
         if (!$this->connection->query($update_student_result_details)) {

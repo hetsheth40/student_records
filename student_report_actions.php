@@ -16,9 +16,8 @@ if (isset($_POST['insert']) || isset($_POST['action']) && $_POST['action'] == "i
 	$science = $verify->escape_string($_POST['science']);
 	$history = $verify->escape_string($_POST['history']);
 	$geography = $verify->escape_string($_POST['geography']);
-	// $total = $verify->escape_string($_POST['total']);
-	// $grade = $verify->escape_string($_POST['grade']);
-
+	$remarks = $verify->escape_string($_POST['remarks']);
+	
 	$percentage = round(((($english + $hindi + $math + $science + $history + $geography) / 600) * 100), 2);
 
 	switch ($percentage) {
@@ -39,9 +38,9 @@ if (isset($_POST['insert']) || isset($_POST['action']) && $_POST['action'] == "i
 	$student_results_details = $table_operation->fetch_student_results($student_id);
 
 	if ($student_results_details != false) {
-		$insert_student_result_detail = $table_operation->update_student_result_details($student_id,$first_name,$last_name,$batch_class,$email_address,$english,$hindi,$math,$science,$history,$geography,$percentage,$grade);
+		$insert_student_result_detail = $table_operation->update_student_result_details($student_id, $first_name, $last_name, $batch_class, $email_address, $english, $hindi, $math, $science, $history, $geography, $remarks, $percentage, $grade);
 	} else {
-		$insert_student_result_detail = $table_operation->insert_student_result_details($student_id,$first_name,$last_name,$batch_class,$email_address,$english,$hindi,$math,$science,$history,$geography,$percentage,$grade);
+		$insert_student_result_detail = $table_operation->insert_student_result_details($student_id, $first_name, $last_name, $batch_class, $email_address, $english, $hindi, $math, $science, $history, $geography, $remarks, $percentage, $grade);
 	}
 	if ($insert_student_result_detail == false) {
 		echo '<div class="alert alert-danger alert-dismissible fade show" role="alert"><span>Data Insertion Fail</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>';
@@ -57,11 +56,11 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 
 	$table_operation->create_student_result_table();
 
-	if (isset($_POST['user_id'])) {
-		$requested_user_id = $verify->escape_string($_POST['user_id']);
+	if (isset($_POST['student_id'])) {
+		$requested_student_id = $verify->escape_string($_POST['student_id']);
 
 		//student results detail
-		$student_results_details = $table_operation->fetch_student_results($requested_user_id);
+		$student_results_details = $table_operation->fetch_student_results($requested_student_id);
 	} else {
 		//student results detail
 		$student_results_details = $table_operation->fetch_student_results();
@@ -72,6 +71,24 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 	if ($student_results_details != false) {
 
 		foreach ($student_results_details as $student_result_detail) {
+		
+			$percentage=$student_result_detail['percentage'];
+
+			switch ($percentage) {
+				case $percentage >= 75:
+					$color = 'bg-success';
+					break;
+				case $percentage >= 60:
+					$color = 'bg-info';
+					break;
+				case $percentage >= 33:
+					$color = 'bg-warning';
+					break;
+				case $percentage <= 33:
+					$color = 'bg-danger';
+					break;
+			}
+		
 ?>
 
 			<tr>
@@ -80,9 +97,10 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 				<td><?php echo $student_result_detail['last_name']; ?></td>
 				<td><?php echo $student_result_detail['batch_class']; ?></td>
 				<td><?php echo $student_result_detail['email_address']; ?></td>
+				<td><?php echo $student_result_detail['remarks']; ?></td>
 			</tr>
 			<tr>
-				<td colspan="5">
+				<td colspan="6">
 					<table width="100%">
 						<thead>
 							<tr>
@@ -93,10 +111,11 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 								<td>History</td>
 								<td>Geography</td>
 								<td>Total</td>
+								<td>Percentage</td>
 								<td>Grade</td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="<?php echo $color; ?>">
 
 							<tr>
 								<td><?php echo $student_result_detail['english']; ?>/100</td>
@@ -105,7 +124,8 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 								<td><?php echo $student_result_detail['science']; ?>/100</td>
 								<td><?php echo $student_result_detail['history']; ?>/100</td>
 								<td><?php echo $student_result_detail['geography']; ?>/100</td>
-								<td><?php echo $student_result_detail['total']; ?>/600</td>
+								<td><?php echo $student_result_detail['english'] + $student_result_detail['hindi'] + $student_result_detail['math'] + $student_result_detail['science'] + $student_result_detail['history'] + $student_result_detail['geography']; ?>/600</td>
+								<td><?php echo $percentage; ?>%</td>
 								<td><?php echo $student_result_detail['grade']; ?></td>
 							</tr>
 
@@ -118,7 +138,7 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 	} else {
 		?>
 		<tr>
-			<td colspan="5">No Data Found</td>
+			<td colspan="6">No Data Found</td>
 		</tr>
 
 <?php

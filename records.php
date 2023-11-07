@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/styles.css?h=d41d8cd98f00b204e9800998ecf8427e">
 </head>
 
-<body onload="diplay_student_data();">
+<body class="d-flex flex-column min-vh-100" style="background-color:#f1f7fc;"onload="diplay_student_data();">
     <!-- Start: Navigation Clean -->
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container"><a class="navbar-brand" href="index.php">Agaetis Technologies<br></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -33,31 +33,32 @@
     <!-- End: Navigation Clean -->
     <!-- Start: Contact Form Clean -->
     <div class="contact-clean">
-        <div class="container p-2" style="background-color:white;">
-        <div class="table-responsive">
-            <!-- Start: Data Table -->
-            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>Student ID</th>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Batch/Class</th>
-                        <th>Email address</th>
-                    </tr>
-                </thead>
-                <tbody id="diplay_student_data">
+        <div class="container p-2 bg-white">
+            <div class="table-responsive">
+                <!-- Start: Data Table -->
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Batch/Class</th>
+                            <th>Email address</th>
+                            <th>Remark</th>
+                        </tr>
+                    </thead>
+                    <tbody id="diplay_student_data">
 
-                </tbody>
-            </table>
-            <!-- End: Data Table -->
-        </div>
+                    </tbody>
+                </table>
+                <!-- End: Data Table -->
+            </div>
         </div>
 
     </div>
     <!-- End: Contact Form Clean -->
     <!-- Start: Footer Basic -->
-    <div class="footer-basic">
+    <div class="footer-basic mt-auto">
         <footer>
             <!-- Start: Social Icons -->
             <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
@@ -77,9 +78,6 @@
         </footer>
     </div>
     <!-- End: Footer Basic -->
-    <!-- Start: Contact Form Clean -->
-    <div class="contact-clean"></div>
-    <!-- End: Contact Form Clean -->
     <script src="assets/js/jquery.min.js?h=83e266cb1712b47c265f77a8f9e18451"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js?h=63715b63ee49d5fe4844c2ecae071373"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
