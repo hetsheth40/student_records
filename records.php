@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/styles.css?h=d41d8cd98f00b204e9800998ecf8427e">
 </head>
 
-<body class="d-flex flex-column min-vh-100" style="background-color:#f1f7fc;"onload="diplay_student_data();">
+<body class="d-flex flex-column min-vh-100" style="background-color:#f1f7fc;" onload="diplay_student_data();">
     <!-- Start: Navigation Clean -->
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container"><a class="navbar-brand" href="index.php">Agaetis Technologies<br></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -56,6 +56,25 @@
         </div>
 
     </div>
+    <div id="error_view_student_data" role="dialog" tabindex="-1" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Error to view Student Records</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="location_changing()">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-2 bg-white">
+                        <div class="table-responsive">
+                            <h2>Sorry This page is not allow to visit because mysql connection is not made</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End: Contact Form Clean -->
     <!-- Start: Footer Basic -->
     <div class="footer-basic mt-auto">
@@ -83,13 +102,23 @@
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script>
+        function location_changing() {
+            var current_url = window.location.href;
+            var current_path = window.location.pathname;
+            var new_path = "/index.php";
+            var new_url = current_url.replace(current_path, new_path)
+            window.location.assign(new_url)
+        }
+
         function diplay_student_data() {
             $.post('student_report_actions.php', {
-                    action: 'view'
-                },
-                function(data) {
-                    $('#diplay_student_data').html(data);
-                });
+                action: 'view'
+            }).done(function(data) {
+                $('#diplay_student_data').html(data);
+            }).fail(function() {
+                $('#diplay_student_data').html('<tr><td colspan="6">No Data Found</td></tr>');
+                $('#error_view_student_data').modal('toggle');
+            });
         }
     </script>
 </body>

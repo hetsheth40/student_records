@@ -351,31 +351,56 @@
             if (verification_staus.includes(false) == false) {
 
                 $.post('student_report_actions.php', {
-                        action: 'insert',
-                        student_id: student_id,
-                        first_name: first_name,
-                        last_name: last_name,
-                        batch_class: batch_class,
-                        email_address: email_address,
-                        english: english,
-                        hindi: hindi,
-                        math: math,
-                        science: science,
-                        history: history,
-                        geography: geography,
-                        remarks: remarks
-                    },
-                    function(data) {
-                        $.post('student_report_actions.php', {
-                                action: 'view',
-                                student_id: student_id
-                            },
-                            function(data) {
-                                $('#diplay_student_data').html(data);
-                                $('#view_student_data').modal('toggle')
-                            });
+                    action: 'insert',
+                    student_id: student_id,
+                    first_name: first_name,
+                    last_name: last_name,
+                    batch_class: batch_class,
+                    email_address: email_address,
+                    english: english,
+                    hindi: hindi,
+                    math: math,
+                    science: science,
+                    history: history,
+                    geography: geography,
+                    remarks: remarks
+                }).done(function(data) {
+                    $.post('student_report_actions.php', {
+                            action: 'view',
+                            student_id: student_id
+                        },
+                        function(data) {
+                            $('#diplay_student_data').html(data);
+                            $('#view_student_data').modal('toggle');
+                        });
+                }).fail(function() {
+                    var total=(parseFloat(english)+parseFloat(hindi)+parseFloat(math)+parseFloat(science)+parseFloat(history)+parseFloat(geography)).toFixed(2);
+                    var percentage =((total / 600) * 100).toFixed(2);
+                    var grade = null
+                    var color = null
+                    switch (true) {
+                        case percentage >= 75:
+                            grade = 'Distinction';
+                            color = 'bg-success';
+                            break;
+                        case percentage >= 60:
+                            grade = 'First Class';
+                            color = 'bg-info';
+                            break;
+                        case percentage >= 33:
+                            grade = 'Pass';
+                            color = 'bg-warning';
+                            break;
+                        case percentage <= 33:
+                            grade = 'Fail';
+                            color = 'bg-danger';
+                            break;
+                    }
 
-                    });
+                    $('#diplay_student_data').html('<tr><td>' + student_id + '</td><td>' + first_name + '</td><td>' + last_name + '</td><td>' + batch_class + '</td><td>' + email_address + '</td><td>' + remarks + '</td></tr><tr><td colspan="6"><table width="100%"><thead><tr><td>English</td><td>Hindi</td><td>Math</td><td>Science</td><td>History</td><td>Geography</td><td>Total</td><td>Percentage</td><td>Grade</td></tr></thead><tbody class="' + color + '"><tr><td>' + english + '/100</td><td>' + hindi + '/100</td><td>' + math + '/100</td><td>' + science + '/100</td><td>' + history + '/100</td><td>' + geography + '/100</td><td>' + total + '/600</td><td>' + percentage + '%</td><td>' + grade + '</td></tr></tbody></table></td></tr>');
+                    $('#view_student_data').modal('toggle');
+                });
+
             }
         }
     </script>

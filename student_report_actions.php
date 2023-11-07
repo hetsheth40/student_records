@@ -2,6 +2,7 @@
 include_once 'backend.php';
 $verify = new User_data_verify();
 $table_operation = new CURD_Operation();
+$table_operation->create_student_result_table();
 
 if (isset($_POST['insert']) || isset($_POST['action']) && $_POST['action'] == "insert") {
 
@@ -16,6 +17,8 @@ if (isset($_POST['insert']) || isset($_POST['action']) && $_POST['action'] == "i
 	$science = $verify->escape_string($_POST['science']);
 	$history = $verify->escape_string($_POST['history']);
 	$geography = $verify->escape_string($_POST['geography']);
+	$remarks = $verify->escape_string($_POST['remarks']);
+	$remarks = $verify->escape_string($_POST['remarks']);
 	$remarks = $verify->escape_string($_POST['remarks']);
 	
 	$percentage = round(((($english + $hindi + $math + $science + $history + $geography) / 600) * 100), 2);
@@ -53,8 +56,6 @@ if (isset($_POST['insert']) || isset($_POST['action']) && $_POST['action'] == "i
 
 
 if (isset($_POST['action']) && $_POST['action'] == "view") {
-
-	$table_operation->create_student_result_table();
 
 	if (isset($_POST['student_id'])) {
 		$requested_student_id = $verify->escape_string($_POST['student_id']);
@@ -124,11 +125,10 @@ if (isset($_POST['action']) && $_POST['action'] == "view") {
 								<td><?php echo $student_result_detail['science']; ?>/100</td>
 								<td><?php echo $student_result_detail['history']; ?>/100</td>
 								<td><?php echo $student_result_detail['geography']; ?>/100</td>
-								<td><?php echo $student_result_detail['english'] + $student_result_detail['hindi'] + $student_result_detail['math'] + $student_result_detail['science'] + $student_result_detail['history'] + $student_result_detail['geography']; ?>/600</td>
+								<td><?php echo number_format(($student_result_detail['english'] + $student_result_detail['hindi'] + $student_result_detail['math'] + $student_result_detail['science'] + $student_result_detail['history'] + $student_result_detail['geography']), 2, '.', ''); ?>/600</td>
 								<td><?php echo $percentage; ?>%</td>
 								<td><?php echo $student_result_detail['grade']; ?></td>
 							</tr>
-
 						</tbody>
 					</table>
 				</td>
