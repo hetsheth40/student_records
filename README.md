@@ -9,7 +9,7 @@ To connect to the database in your system, you'll need to create a connection.ph
 bash
 Copy code
 ```
- git clone https://github.com/yourusername/your-repo.git
+ git clone https://github.com/hetsheth40/student_records
 ```
 
 2. Navigate to the Project Directory: Change your working directory to the project folder:
@@ -35,18 +35,11 @@ Copy code
 ```
 <?php
 // Replace with your database connection details
-$hostname = 'your_hostname';
+$host = 'your_hostname';
 $username = 'your_username';
 $password = 'your_password';
 $database = 'your_database_name';
 
-// Create a database connection
-$connection = mysqli_connect($hostname, $username, $password, $database);
-
-// Check the connection
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 ?>
 ```
 
